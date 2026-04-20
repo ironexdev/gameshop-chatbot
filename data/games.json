@@ -1,0 +1,152 @@
+[
+  {
+    "id": "g-001",
+    "title": "Elden Ring",
+    "platform": ["PC", "PS5", "Xbox"],
+    "genre": "RPG",
+    "price_czk": 1299,
+    "stock": 12,
+    "release_date": "2022-02-25",
+    "description": "Otevřený svět od FromSoftware. Náročné souboje, temná fantasy a obrovský prostor k prozkoumávání."
+  },
+  {
+    "id": "g-002",
+    "title": "The Legend of Zelda: Tears of the Kingdom",
+    "platform": ["Switch"],
+    "genre": "Adventure",
+    "price_czk": 1499,
+    "stock": 5,
+    "release_date": "2023-05-12",
+    "description": "Pokračování legendárního Breath of the Wild s létajícími ostrovy a novými schopnostmi."
+  },
+  {
+    "id": "g-003",
+    "title": "Cyberpunk 2077",
+    "platform": ["PC", "PS5", "Xbox"],
+    "genre": "RPG",
+    "price_czk": 899,
+    "stock": 20,
+    "release_date": "2020-12-10",
+    "description": "Akční RPG v Night City. Hraj jako V a zaboř se do kyberpunkové budoucnosti."
+  },
+  {
+    "id": "g-004",
+    "title": "God of War Ragnarök",
+    "platform": ["PS5"],
+    "genre": "Action",
+    "price_czk": 1399,
+    "stock": 8,
+    "release_date": "2022-11-09",
+    "description": "Kratos a Atreus čelí Ragnaröku. Severská mytologie, brutální souboje a silný příběh."
+  },
+  {
+    "id": "g-005",
+    "title": "FIFA 24",
+    "platform": ["PC", "PS5", "Xbox"],
+    "genre": "Sports",
+    "price_czk": 1799,
+    "stock": 30,
+    "release_date": "2023-09-29",
+    "description": "Nejnovější fotbalový simulátor s kompletními ligami a aktualizovanými soupiskami."
+  },
+  {
+    "id": "g-006",
+    "title": "Hollow Knight",
+    "platform": ["PC", "Switch", "PS5", "Xbox"],
+    "genre": "Metroidvania",
+    "price_czk": 349,
+    "stock": 50,
+    "release_date": "2017-02-24",
+    "description": "Atmosférická 2D metroidvania s ručně kreslenou grafikou a náročnými souboji."
+  },
+  {
+    "id": "g-007",
+    "title": "Baldur's Gate 3",
+    "platform": ["PC", "PS5"],
+    "genre": "RPG",
+    "price_czk": 1499,
+    "stock": 0,
+    "release_date": "2023-08-03",
+    "description": "Tahové RPG od Larian Studios v Dungeons & Dragons světě. Hluboký příběh a volby."
+  },
+  {
+    "id": "g-008",
+    "title": "Hades",
+    "platform": ["PC", "Switch", "PS5", "Xbox"],
+    "genre": "Roguelike",
+    "price_czk": 599,
+    "stock": 25,
+    "release_date": "2020-09-17",
+    "description": "Roguelike od Supergiant Games. Vyběhni z podsvětí a poznávej řecké bohy."
+  },
+  {
+    "id": "g-009",
+    "title": "Forza Horizon 5",
+    "platform": ["PC", "Xbox"],
+    "genre": "Racing",
+    "price_czk": 1199,
+    "stock": 15,
+    "release_date": "2021-11-09",
+    "description": "Závodní hra v otevřeném světě Mexika. Stovky aut a nekonečná zábava za volantem."
+  },
+  {
+    "id": "g-010",
+    "title": "Stardew Valley",
+    "platform": ["PC", "Switch", "PS5", "Xbox"],
+    "genre": "Simulation",
+    "price_czk": 299,
+    "stock": 100,
+    "release_date": "2016-02-26",
+    "description": "Klidná farmaření simulace. Pěstuj plodiny, choby zvířata a buduj komunitu."
+  },
+  {
+    "id": "g-011",
+    "title": "Resident Evil 4 Remake",
+    "platform": ["PC", "PS5", "Xbox"],
+    "genre": "Survival Horror",
+    "price_czk": 1099,
+    "stock": 7,
+    "release_date": "2023-03-24",
+    "description": "Předělávka kultovního hororu. Leon S. Kennedy znovu v boji proti vesnické sektě."
+  },
+  {
+    "id": "g-012",
+    "title": "Super Mario Odyssey",
+    "platform": ["Switch"],
+    "genre": "Platformer",
+    "price_czk": 1499,
+    "stock": 18,
+    "release_date": "2017-10-27",
+    "description": "Mario cestuje světem v 3D plošinovce. Klobouk Cappy přidává nové schopnosti."
+  },
+  {
+    "id": "g-013",
+    "title": "Call of Duty: Modern Warfare III",
+    "platform": ["PC", "PS5", "Xbox"],
+    "genre": "FPS",
+    "price_czk": 1799,
+    "stock": 22,
+    "release_date": "2023-11-10",
+    "description": "Pokračování série. Multiplayer, kampaň i kooperativní mód."
+  },
+  {
+    "id": "g-014",
+    "title": "Disco Elysium",
+    "platform": ["PC", "PS5", "Switch"],
+    "genre": "RPG",
+    "price_czk": 799,
+    "stock": 11,
+    "release_date": "2019-10-15",
+    "description": "Detektivní RPG s důrazem na dialogy a vnitřní monolog. Žádné souboje, jen volby."
+  },
+  {
+    "id": "g-015",
+    "title": "Spider-Man 2",
+    "platform": ["PS5"],
+    "genre": "Action",
+    "price_czk": 1599,
+    "stock": 9,
+    "release_date": "2023-10-20",
+    "description": "Peter Parker a Miles Morales společně. Otevřený New York a souboj se symbiontem."
+  }
+]

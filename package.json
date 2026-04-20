@@ -1,0 +1,12 @@
+{
+  "name": "gameshop-chatbot",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "workspaces": ["server", "client", "widget"],
+  "scripts": {
+    "build": "npm run build --workspaces --if-present",
+    "start": "npm install && npm run build && node client/dist/index.js",
+    "dev": "npm run build && node --watch client/dist/index.js"
+  }
+}

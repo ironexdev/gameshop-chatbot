@@ -1,0 +1,59 @@
+[
+  {
+    "order_id": "48210",
+    "email": "jan.novak@email.cz",
+    "status": "shipped",
+    "items": [
+      { "game_id": "g-001", "title": "Elden Ring", "qty": 1, "price_czk": 1299 },
+      { "game_id": "g-008", "title": "Hades", "qty": 1, "price_czk": 599 }
+    ],
+    "total_czk": 1898,
+    "tracking_number": "CZ123456789",
+    "created_at": "2026-04-10T09:32:00Z"
+  },
+  {
+    "order_id": "48211",
+    "email": "petra.dvorakova@email.cz",
+    "status": "delivered",
+    "items": [
+      { "game_id": "g-002", "title": "The Legend of Zelda: Tears of the Kingdom", "qty": 1, "price_czk": 1499 }
+    ],
+    "total_czk": 1499,
+    "tracking_number": "CZ987654321",
+    "created_at": "2026-03-28T14:11:00Z"
+  },
+  {
+    "order_id": "48212",
+    "email": "tomas.svoboda@email.cz",
+    "status": "paid",
+    "items": [
+      { "game_id": "g-005", "title": "FIFA 24", "qty": 2, "price_czk": 1799 }
+    ],
+    "total_czk": 3598,
+    "tracking_number": null,
+    "created_at": "2026-04-18T08:05:00Z"
+  },
+  {
+    "order_id": "48213",
+    "email": "lucie.cerna@email.cz",
+    "status": "created",
+    "items": [
+      { "game_id": "g-007", "title": "Baldur's Gate 3", "qty": 1, "price_czk": 1499 },
+      { "game_id": "g-014", "title": "Disco Elysium", "qty": 1, "price_czk": 799 }
+    ],
+    "total_czk": 2298,
+    "tracking_number": null,
+    "created_at": "2026-04-19T19:47:00Z"
+  },
+  {
+    "order_id": "48214",
+    "email": "marek.horak@email.cz",
+    "status": "cancelled",
+    "items": [
+      { "game_id": "g-013", "title": "Call of Duty: Modern Warfare III", "qty": 1, "price_czk": 1799 }
+    ],
+    "total_czk": 1799,
+    "tracking_number": null,
+    "created_at": "2026-04-15T12:00:00Z"
+  }
+]

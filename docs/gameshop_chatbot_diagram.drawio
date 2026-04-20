@@ -1,0 +1,129 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Environments" id="t2Plx9dRMyf4oW_GrJMH">
+    <mxGraphModel dx="1312" dy="-1003" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="z2IF-VTn-OaD9JBxBmtK-217" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#446E2C;dashed=1;dashPattern=8 8;verticalAlign=top;fontSize=12;fontStyle=1;spacingTop=10;spacingLeft=16;align=left;fontColor=#888888;" value="" vertex="1">
+          <mxGeometry height="200" width="720.05" x="1199.95" y="2640" as="geometry" />
+        </mxCell>
+        <mxCell id="z2IF-VTn-OaD9JBxBmtK-225" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#5C79A3;dashed=1;dashPattern=8 8;verticalAlign=top;fontSize=12;fontStyle=1;spacingTop=10;spacingLeft=16;align=left;fontColor=#888888;" value="" vertex="1">
+          <mxGeometry height="480" width="570.05" x="1199.95" y="2920" as="geometry" />
+        </mxCell>
+        <mxCell id="z2IF-VTn-OaD9JBxBmtK-216" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=20;fontStyle=1;" value="GameShop Chatbot Architecture" vertex="1">
+          <mxGeometry height="40" width="900" x="1200.0036810980903" y="2559.995139973958" as="geometry" />
+        </mxCell>
+        <mxCell id="z2IF-VTn-OaD9JBxBmtK-218" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;fontSize=12;fontStyle=1;" value="Demo page&lt;br&gt;&lt;span style=&quot;font-weight:normal;&quot;&gt;(demo/index.html)&lt;/span&gt;" vertex="1">
+          <mxGeometry height="80" width="240.05" x="1239.95" y="2720" as="geometry" />
+        </mxCell>
+        <mxCell id="z2IF-VTn-OaD9JBxBmtK-219" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;fontStyle=1;" value="Chat Widget&lt;br&gt;&lt;span style=&quot;font-weight:normal;&quot;&gt;(vanilla TS, Shadow DOM,&lt;br&gt;localStorage for sessionId)&lt;/span&gt;" vertex="1">
+          <mxGeometry height="80" width="240" x="1639.9536810980903" y="2719.995139973958" as="geometry" />
+        </mxCell>
+        <mxCell id="z2IF-VTn-OaD9JBxBmtK-221" edge="1" parent="1" source="z2IF-VTn-OaD9JBxBmtK-218" style="edgeStyle=none;rounded=0;html=1;endArrow=classic;strokeColor=#82B366;strokeWidth=1.5;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="z2IF-VTn-OaD9JBxBmtK-219">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="z2IF-VTn-OaD9JBxBmtK-222" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=10;fontStyle=2;fontColor=#3F6B22;" value="Embeds widget.js" vertex="1">
+          <mxGeometry height="20" width="160" x="1480" y="2740" as="geometry" />
+        </mxCell>
+        <mxCell id="z2IF-VTn-OaD9JBxBmtK-226" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=12;align=left;verticalAlign=top;spacingLeft=10;spacingTop=8;" value="&lt;b style=&quot;font-size:13px;&quot;&gt;HTTP Backend process&lt;/b&gt; &lt;span style=&quot;color:#4F6E92;font-size:10px;&quot;&gt;(Node parent, client/src/index.ts)&lt;/span&gt;&lt;br&gt;&lt;br&gt;&lt;span style=&quot;font-size:11px;&quot;&gt;&amp;nbsp;•&amp;nbsp;&lt;b&gt;node:http&lt;/b&gt; server on PORT: routes, CORS, static serving of / and /widget.js&lt;br&gt;&amp;nbsp;•&amp;nbsp;&lt;b&gt;Chat orchestration loop&lt;/b&gt;: anthropic.messages.create tool-use loop, max 8 iterations/turn&lt;br&gt;&amp;nbsp;•&amp;nbsp;&lt;b&gt;MCP client&lt;/b&gt;: spawns and talks to the subprocess over stdio&lt;br&gt;&amp;nbsp;•&amp;nbsp;&lt;b&gt;Session store&lt;/b&gt;: in-memory Map&amp;lt;sessionId, Message[]&amp;gt;, cleared on restart&lt;/span&gt;" vertex="1">
+          <mxGeometry height="120" width="480.05" x="1239.95" y="3000" as="geometry" />
+        </mxCell>
+        <mxCell id="z2IF-VTn-OaD9JBxBmtK-227" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=12;align=left;verticalAlign=top;spacingLeft=10;spacingTop=8;" value="&lt;b style=&quot;font-size:13px;&quot;&gt;MCP Server subprocess&lt;/b&gt; &lt;span style=&quot;color:#4F6E92;font-size:10px;&quot;&gt;(Node child of the backend, server/src/index.ts, @modelcontextprotocol/sdk)&lt;/span&gt;&lt;br&gt;&lt;br&gt;&lt;span style=&quot;font-size:11px;&quot;&gt;&amp;nbsp;•&amp;nbsp;Exposes tools: &lt;b&gt;search_games&lt;/b&gt;, &lt;b&gt;get_game&lt;/b&gt;, &lt;b&gt;get_order&lt;/b&gt; (requires order_id + email)&lt;br&gt;&amp;nbsp;•&amp;nbsp;Order-lookup gate is enforced in &lt;b&gt;tool code&lt;/b&gt;, not in the prompt, so the LLM cannot bypass it&lt;br&gt;&amp;nbsp;•&amp;nbsp;&lt;b&gt;Data&lt;/b&gt;: games[] and orders[] arrays, loaded once from games.json / orders.json via readFileSync at startup&lt;/span&gt;" vertex="1">
+          <mxGeometry height="159.81" width="480.05" x="1239.95" y="3200" as="geometry" />
+        </mxCell>
+        <mxCell id="z2IF-VTn-OaD9JBxBmtK-228" edge="1" parent="1" source="z2IF-VTn-OaD9JBxBmtK-226" style="edgeStyle=none;rounded=0;html=1;endArrow=classic;startArrow=classic;strokeColor=#000000;strokeWidth=1.5;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="z2IF-VTn-OaD9JBxBmtK-227">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="z2IF-VTn-OaD9JBxBmtK-229" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=11;fontStyle=2;fontColor=#23445D;" value="&lt;b&gt;stdio pipes&lt;/b&gt;&lt;div&gt;(MCP protocol: tools/list at startup,&lt;/div&gt;&lt;div&gt;tools/call per iteration)&lt;/div&gt;" vertex="1">
+          <mxGeometry height="80" width="200.05" x="1479.95" y="3120" as="geometry" />
+        </mxCell>
+        <mxCell id="z2IF-VTn-OaD9JBxBmtK-230" edge="1" parent="1" source="z2IF-VTn-OaD9JBxBmtK-219" style="edgeStyle=none;rounded=0;html=1;endArrow=classic;startArrow=classic;strokeColor=#000000;strokeWidth=1.5;entryX=0.798;entryY=0.002;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryPerimeter=0;" target="z2IF-VTn-OaD9JBxBmtK-225">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1590" y="2860" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="z2IF-VTn-OaD9JBxBmtK-231" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=11;fontStyle=2;fontColor=#23445D;" value="POST /chat  (HTTP, localhost)&lt;br&gt;{sessionId, message} ⇄ {reply}" vertex="1">
+          <mxGeometry height="40" width="190" x="1770" y="2980" as="geometry" />
+        </mxCell>
+        <mxCell id="z2IF-VTn-OaD9JBxBmtK-232" edge="1" parent="1" source="z2IF-VTn-OaD9JBxBmtK-257" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=classic;startArrow=none;strokeColor=#000000;strokeWidth=1.5;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.281;exitY=0.001;exitDx=0;exitDy=0;exitPerimeter=0;" target="z2IF-VTn-OaD9JBxBmtK-218">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1360" y="2910" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="z2IF-VTn-OaD9JBxBmtK-233" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontStyle=2;fontColor=#446E2C;" value="GET / , GET /widget.js (static serving)" vertex="1">
+          <mxGeometry height="80" width="200" x="1380" y="2840" as="geometry" />
+        </mxCell>
+        <mxCell id="z2IF-VTn-OaD9JBxBmtK-234" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;fontSize=13;fontStyle=1;align=center;verticalAlign=middle;" value="Anthropic Claude API&lt;br&gt;&lt;span style=&quot;font-weight:normal;font-size:11px;&quot;&gt;(external HTTPS service,&lt;br&gt;api.anthropic.com)&lt;/span&gt;" vertex="1">
+          <mxGeometry height="120" width="260" x="1960" y="2960" as="geometry" />
+        </mxCell>
+        <mxCell id="z2IF-VTn-OaD9JBxBmtK-235" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=10;fontStyle=2;fontColor=#7D6608;" value="&lt;div&gt;Every tool-use iteration = one&lt;/div&gt;&lt;div&gt;messages.create({system, tools, messages}).&lt;/div&gt;&lt;div&gt;The &lt;b&gt;tools&lt;/b&gt; field is filled once at startup&lt;/div&gt;&lt;div&gt;from the MCP subprocess and resent every call.&lt;/div&gt;" vertex="1">
+          <mxGeometry height="80" width="260" x="1960.0036810980905" y="3079.995139973958" as="geometry" />
+        </mxCell>
+        <mxCell id="z2IF-VTn-OaD9JBxBmtK-236" edge="1" parent="1" style="edgeStyle=none;rounded=0;html=1;endArrow=classic;startArrow=classic;strokeColor=#000000;strokeWidth=1.5;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="z2IF-VTn-OaD9JBxBmtK-234">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1770" y="3020" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="z2IF-VTn-OaD9JBxBmtK-238" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=light-dark(#808080, #d7817e);dashed=1;dashPattern=8 8;verticalAlign=top;fontSize=10;fontStyle=2;fontColor=#808080;align=left;spacingLeft=8;spacingTop=4;" value="" vertex="1">
+          <mxGeometry height="240" width="1180.05" x="1199.95" y="3480" as="geometry" />
+        </mxCell>
+        <mxCell id="z2IF-VTn-OaD9JBxBmtK-239" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F8CECC;strokeColor=#B85450;dashed=1;align=left;verticalAlign=top;fontSize=10;spacingLeft=8;spacingTop=8;fontFamily=Helvetica;fontColor=default;" value="&lt;b&gt;System prompt + tool-use loop&lt;/b&gt;&lt;br&gt;- Czech-only persona (&quot;GameShop&quot;)&lt;br&gt;- Max 8 iterations of tool-use per turn&lt;br&gt;- Full message history sent each turn" vertex="1">
+          <mxGeometry height="120" width="260" x="1239.9536810980903" y="3559.995139973958" as="geometry" />
+        </mxCell>
+        <mxCell id="z2IF-VTn-OaD9JBxBmtK-240" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F8CECC;strokeColor=#B85450;dashed=1;align=left;verticalAlign=top;fontSize=10;spacingLeft=8;spacingTop=8;fontFamily=Helvetica;fontColor=default;" value="&lt;b&gt;Session + history handling&lt;/b&gt;&lt;br&gt;- sessionId from widget (localStorage UUID)&lt;br&gt;- History kept server-side in the Map&lt;br&gt;- Widget also mirrors messages in localStorage (UX only, not auth)" vertex="1">
+          <mxGeometry height="120" width="260" x="1519.9536810980903" y="3559.995139973958" as="geometry" />
+        </mxCell>
+        <mxCell id="z2IF-VTn-OaD9JBxBmtK-241" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F8CECC;strokeColor=#B85450;dashed=1;align=left;verticalAlign=top;fontSize=10;spacingLeft=8;spacingTop=8;" value="&lt;b&gt;Order-lookup guardrail&lt;/b&gt;&lt;br&gt;get_order needs BOTH:&lt;br&gt;- order_id&lt;br&gt;- email&lt;br&gt;Enforced in &lt;b&gt;tool code&lt;/b&gt; inside the MCP subprocess, not in the prompt." vertex="1">
+          <mxGeometry height="120" width="260" x="1799.9536810980903" y="3559.995139973958" as="geometry" />
+        </mxCell>
+        <mxCell id="z2IF-VTn-OaD9JBxBmtK-242" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F8CECC;strokeColor=#B85450;dashed=1;align=left;verticalAlign=top;fontSize=10;spacingLeft=8;spacingTop=8;" value="&lt;b&gt;Ambiguous error on mismatch&lt;/b&gt;&lt;br&gt;On a bad order_id + email pair the tool returns &quot;not_found_or_unauthorized&quot;. The assistant is instructed NOT to reveal which field was wrong." vertex="1">
+          <mxGeometry height="120" width="260" x="2079.9536810980903" y="3559.995139973958" as="geometry" />
+        </mxCell>
+        <mxCell id="z2IF-VTn-OaD9JBxBmtK-243" edge="1" parent="1" source="z2IF-VTn-OaD9JBxBmtK-225" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=classic;strokeColor=#000000;strokeWidth=1.5;dashed=1;dashPattern=8 8;fontColor=#000000;exitX=0;exitY=0.29;exitDx=0;exitDy=0;exitPerimeter=0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1180" y="3059" />
+              <mxPoint x="1160" y="3060" />
+              <mxPoint x="1160" y="3600" />
+            </Array>
+            <mxPoint x="1190" y="3060" as="sourcePoint" />
+            <mxPoint x="1200" y="3600" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="z2IF-VTn-OaD9JBxBmtK-244" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#888888;dashed=1;verticalAlign=top;fontSize=12;fontStyle=1;spacingTop=10;spacingLeft=10;align=left;" value="" vertex="1">
+          <mxGeometry height="210" width="560" x="1960" y="3200" as="geometry" />
+        </mxCell>
+        <mxCell id="z2IF-VTn-OaD9JBxBmtK-245" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;fontSize=10;" value="Node process" vertex="1">
+          <mxGeometry height="28" width="160" x="2000.0036810980905" y="3239.995139973958" as="geometry" />
+        </mxCell>
+        <mxCell id="z2IF-VTn-OaD9JBxBmtK-246" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;fontSize=10;" value="Host page / static asset" vertex="1">
+          <mxGeometry height="28" width="160" x="2170.0036810980905" y="3239.995139973958" as="geometry" />
+        </mxCell>
+        <mxCell id="z2IF-VTn-OaD9JBxBmtK-247" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#E1D5E7;strokeColor=#9673A6;fontSize=10;" value="Frontend / UI" vertex="1">
+          <mxGeometry height="28" width="140" x="2340.0036810980905" y="3239.995139973958" as="geometry" />
+        </mxCell>
+        <mxCell id="z2IF-VTn-OaD9JBxBmtK-248" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;fontSize=10;" value="External AI / LLM" vertex="1">
+          <mxGeometry height="28" width="160" x="2000.0036810980905" y="3279.995139973958" as="geometry" />
+        </mxCell>
+        <mxCell id="z2IF-VTn-OaD9JBxBmtK-249" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F8CECC;strokeColor=#B85450;dashed=1;fontSize=10;" value="Rule / guardrail / processing note" vertex="1">
+          <mxGeometry height="28" width="160" x="2170.0036810980905" y="3279.995139973958" as="geometry" />
+        </mxCell>
+        <mxCell id="z2IF-VTn-OaD9JBxBmtK-251" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=10;fontStyle=2;fontColor=#888888;" value="&lt;div&gt;Solid arrows = runtime data flow (IPC or HTTP/HTTPS)&lt;/div&gt;&lt;div&gt;Dashed arrows = applies-to, no runtime data flow&lt;/div&gt;&lt;div&gt;Dashed containers = process / host boundaries&lt;/div&gt;" vertex="1">
+          <mxGeometry height="70" width="520" x="2000.0036810980905" y="3319.995139973958" as="geometry" />
+        </mxCell>
+        <mxCell id="z2IF-VTn-OaD9JBxBmtK-256" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;fontStyle=1;spacingLeft=40;" value="&lt;font style=&quot;color: rgb(68, 110, 44);&quot;&gt;Browser&lt;/font&gt;" vertex="1">
+          <mxGeometry height="80" width="720.05" x="1199.95" y="2640" as="geometry" />
+        </mxCell>
+        <mxCell id="z2IF-VTn-OaD9JBxBmtK-257" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;fontStyle=1;spacingLeft=40;fontColor=#5C79A3;" value="&lt;span style=&quot;&quot;&gt;Local machine - one npm start = one Node parent process + one Node child subprocess&lt;/span&gt;" vertex="1">
+          <mxGeometry height="80" width="570.03" x="1199.97" y="2920" as="geometry" />
+        </mxCell>
+        <mxCell id="z2IF-VTn-OaD9JBxBmtK-258" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;fontStyle=1;spacingLeft=40;fontColor=#AB6A68;" value="&lt;span style=&quot;&quot;&gt;&lt;font style=&quot;&quot;&gt;Rules &amp;amp; processing layers the backend applies&lt;/font&gt;&lt;/span&gt;" vertex="1">
+          <mxGeometry height="80" width="1140" x="1200" y="3480" as="geometry" />
+        </mxCell>
+        <mxCell id="z2IF-VTn-OaD9JBxBmtK-259" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;fontStyle=1;spacingLeft=40;fontColor=#000000;" value="&lt;span style=&quot;&quot;&gt;&lt;font style=&quot;&quot;&gt;Legend&lt;/font&gt;&lt;/span&gt;" vertex="1">
+          <mxGeometry height="40" width="560" x="1960" y="3200" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
