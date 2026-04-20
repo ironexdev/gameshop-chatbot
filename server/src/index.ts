@@ -15,6 +15,7 @@ type Game = {
   title: string;
   platform: Platform[];
   genre: string;
+  mood: string[];
   price_czk: number;
   stock: number;
   release_date: string;
@@ -61,6 +62,12 @@ const tools = [
           description: "Platforma hry.",
         },
         genre: { type: "string", description: "Žánr, case-insensitive přesná shoda." },
+        mood: {
+          type: "array",
+          items: { type: "string" },
+          description:
+            "Nálady/atmosféra hry (např. 'relaxing', 'dark', 'epic'). Hra musí odpovídat VŠEM zadaným náladám (AND), case-insensitive shoda proti poli mood.",
+        },
         max_price_czk: { type: "number", description: "Maximální cena v Kč." },
       },
       additionalProperties: false,
@@ -104,6 +111,9 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
     const q = typeof a.query === "string" ? a.query.toLowerCase() : undefined;
     const platform = typeof a.platform === "string" ? (a.platform as Platform) : undefined;
     const genre = typeof a.genre === "string" ? a.genre.toLowerCase() : undefined;
+    const moods = Array.isArray(a.mood)
+      ? a.mood.filter((m): m is string => typeof m === "string").map((m) => m.toLowerCase())
+      : undefined;
     const maxPrice = typeof a.max_price_czk === "number" ? a.max_price_czk : undefined;
 
     const matches = games
@@ -112,6 +122,10 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
           return false;
         if (platform && !g.platform.includes(platform)) return false;
         if (genre && g.genre.toLowerCase() !== genre) return false;
+        if (moods && moods.length > 0) {
+          const gameMoods = g.mood.map((m) => m.toLowerCase());
+          if (!moods.every((m) => gameMoods.includes(m))) return false;
+        }
         if (maxPrice !== undefined && g.price_czk > maxPrice) return false;
         return true;
       })
