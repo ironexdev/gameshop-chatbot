@@ -34,6 +34,7 @@ type Order = {
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const dataDir = resolve(__dirname, "../../data");
 
+// Load fixture "database" once at startup
 const games: Game[] = JSON.parse(readFileSync(resolve(dataDir, "games.json"), "utf8"));
 const orders: Order[] = JSON.parse(readFileSync(resolve(dataDir, "orders.json"), "utf8"));
 
@@ -91,8 +92,10 @@ const tools = [
   },
 ];
 
+// Advertises the tool catalog to any MCP client
 server.setRequestHandler(ListToolsRequestSchema, async () => ({ tools }));
 
+// Dispatches one tool invocation and returns a JSON text payload
 server.setRequestHandler(CallToolRequestSchema, async (request) => {
   const { name, arguments: args } = request.params;
   const a = (args ?? {}) as Record<string, unknown>;
@@ -130,6 +133,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
   }
 
   if (name === "get_order") {
+    // Auth gate: both fields must match, no partial lookup allowed
     const orderId = typeof a.order_id === "string" ? a.order_id.trim() : "";
     const email = typeof a.email === "string" ? a.email.trim().toLowerCase() : "";
     if (!orderId || !email) {
@@ -158,5 +162,6 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
   };
 });
 
+// Parent speaks to this process via stdin/stdout pipes
 const transport = new StdioServerTransport();
 await server.connect(transport);

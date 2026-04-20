@@ -2,6 +2,7 @@ import type Anthropic from "@anthropic-ai/sdk";
 
 export type Msg = Anthropic.MessageParam;
 
+// In-memory session -> message history; lost on process restart
 const store = new Map<string, Msg[]>();
 
 export function getMessages(sessionId: string): Msg[] {

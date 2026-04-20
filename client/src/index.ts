@@ -9,6 +9,7 @@ import { startMcp } from "./mcp.js";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const rootDir = resolve(__dirname, "../..");
 
+// Load .env into process.env before reading any required vars
 loadDotEnv(resolve(rootDir, ".env"));
 
 const apiKey = requireEnv("ANTHROPIC_API_KEY");
@@ -18,6 +19,7 @@ if (!Number.isFinite(port)) throw new Error("PORT must be a number");
 
 const anthropic = new Anthropic({ apiKey });
 
+// Spawn MCP server once; kept alive for the process lifetime
 const mcp = await startMcp();
 console.log(`[mcp] connected. tools: ${mcp.tools.map((t) => t.name).join(", ")}`);
 
@@ -53,6 +55,7 @@ const server = createServer(async (req, res) => {
       return serveFile(res, diagramSvg, "image/svg+xml; charset=utf-8");
     }
 
+    // Main chat entry: one HTTP call = one conversational turn
     if (req.method === "POST" && url.pathname === "/chat") {
       const body = await readBody(req);
       let payload: { sessionId?: string; message?: string };
@@ -86,6 +89,7 @@ server.listen(port, () => {
   console.log(`[http] listening on http://localhost:${port}`);
 });
 
+// Graceful shutdown: stop MCP subprocess, then close HTTP server
 for (const sig of ["SIGINT", "SIGTERM"] as const) {
   process.on(sig, () => {
     console.log(`[shutdown] ${sig}`);
@@ -102,6 +106,7 @@ function requireEnv(name: string): string {
   return v;
 }
 
+// Minimal .env parser; no dependency, existing env vars win
 function loadDotEnv(path: string): void {
   if (!existsSync(path)) return;
   const content = readFileSync(path, "utf8");

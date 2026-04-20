@@ -1,3 +1,4 @@
+// POSTs a user message, returns the bot reply text
 export async function sendChat(
   endpoint: string,
   sessionId: string,

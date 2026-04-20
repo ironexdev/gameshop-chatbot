@@ -24,6 +24,7 @@ const DEFAULTS = {
 
 let mounted = false;
 
+// Idempotent: mounts the floating chat widget into the host page
 export function init(options: ChatbotOptions): void {
   if (mounted) return;
   if (!options || !options.endpoint) throw new Error("Chatbot.init: endpoint is required");
@@ -38,6 +39,7 @@ export function init(options: ChatbotOptions): void {
     quickActions: options.quickActions ?? DEFAULTS.quickActions,
   };
 
+  // Shadow DOM isolates widget styles from the host page
   const host = document.createElement("div");
   host.id = "gameshop-chatbot-host";
   document.body.appendChild(host);
@@ -51,6 +53,7 @@ export function init(options: ChatbotOptions): void {
   root.className = "root";
   shadow.appendChild(root);
 
+  // Single source of truth for the UI; render() rebuilds from this
   const state = {
     open: false,
     pending: false,
@@ -153,6 +156,7 @@ export function init(options: ChatbotOptions): void {
     }
   }
 
+  // Full rebuild of the card body; simple but plenty for this size
   function render(): void {
     body.innerHTML = "";
 
@@ -178,6 +182,7 @@ export function init(options: ChatbotOptions): void {
       body.appendChild(chips);
     }
 
+    // Bot output goes through markdown+sanitize; user text stays literal
     for (const msg of state.messages) {
       const el = document.createElement("div");
       el.className = "msg " + (msg.role === "user" ? "user" : "bot");
@@ -219,6 +224,7 @@ export function init(options: ChatbotOptions): void {
     sendBtn.disabled = state.pending;
   }
 
+  // Sends the composer text and renders the bot reply
   async function submit(): Promise<void> {
     if (state.pending) return;
     const text = textarea.value.trim();
@@ -245,6 +251,7 @@ export function init(options: ChatbotOptions): void {
     }
   }
 
+  // Escapes store name before inserting it via innerHTML
   function escape(s: string): string {
     return s.replace(/[&<>"']/g, (c) =>
       ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c] as string

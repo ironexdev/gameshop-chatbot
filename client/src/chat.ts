@@ -12,8 +12,10 @@ Když tool vrátí "not_found_or_unauthorized", řekni uživateli, že objednáv
 Odpovědi drž stručné a přehledné.
 Tvoje schopnosti jsou omezené na dostupné nástroje (hledání her, detail hry, stav objednávky). Nenabízej ani neslibuj akce, které neumíš: nepřidávej do košíku, nevytvářej ani neupravuj objednávky, neřeš platby, dopravu, reklamace, slevové kódy ani účty. Pokud uživatel chce takovou akci, odkaž ho na web e-shopu nebo podporu.`;
 
+// Safety cap: stops runaway tool-use loops within one turn
 const MAX_ITERATIONS = 8;
 
+// Runs one user turn: appends message, loops tool-use, returns final text
 export async function runChat(
   anthropic: Anthropic,
   model: string,
@@ -24,6 +26,7 @@ export async function runChat(
   const messages = getMessages(sessionId).slice();
   messages.push({ role: "user", content: userMessage });
 
+  // Translate MCP tool schema to Anthropic's tool-use schema
   const tools = mcp.tools.map((t) => ({
     name: t.name,
     description: t.description,
@@ -41,6 +44,7 @@ export async function runChat(
 
     messages.push({ role: "assistant", content: response.content });
 
+    // Claude asked for tool calls: execute each and feed results back
     if (response.stop_reason === "tool_use") {
       const toolUses = response.content.filter(
         (b): b is Anthropic.Messages.ToolUseBlock => b.type === "tool_use"
@@ -68,6 +72,7 @@ export async function runChat(
       continue;
     }
 
+    // stop_reason === "end_turn": collect text blocks and persist history
     const text = response.content
       .filter((b): b is Anthropic.Messages.TextBlock => b.type === "text")
       .map((b) => b.text)

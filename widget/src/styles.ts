@@ -1,3 +1,4 @@
+// Returns the full CSS as a string, injected into the widget's shadow root
 export function buildStyles(primary: string): string {
   return `
 :host { all: initial; }

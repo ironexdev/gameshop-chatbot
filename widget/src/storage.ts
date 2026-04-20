@@ -3,6 +3,7 @@ import type { UiMessage } from "./types";
 const SID_KEY = "gameshop-chatbot:sessionId";
 const MSG_KEY = "gameshop-chatbot:messages";
 
+// Returns a stable per-browser UUID, created on first use
 export function getSessionId(): string {
   let id = localStorage.getItem(SID_KEY);
   if (!id) {
@@ -12,6 +13,7 @@ export function getSessionId(): string {
   return id;
 }
 
+// Restores chat history so the widget survives reloads
 export function loadMessages(): UiMessage[] {
   try {
     const raw = localStorage.getItem(MSG_KEY);

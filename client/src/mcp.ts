@@ -18,9 +18,11 @@ export type McpHandle = {
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
+// Spawns the MCP server subprocess and opens a stdio client to it
 export async function startMcp(): Promise<McpHandle> {
   const serverEntry = resolve(__dirname, "../../server/dist/index.js");
 
+  // Use the same Node binary that runs this process
   const transport = new StdioClientTransport({
     command: process.execPath,
     args: [serverEntry],
@@ -33,6 +35,7 @@ export async function startMcp(): Promise<McpHandle> {
 
   await client.connect(transport);
 
+  // Fetch tool catalog once; reused for every Anthropic call
   const list = await client.listTools();
   const tools: McpTool[] = list.tools.map((t) => ({
     name: t.name,
@@ -40,6 +43,7 @@ export async function startMcp(): Promise<McpHandle> {
     input_schema: (t.inputSchema ?? { type: "object", properties: {} }) as Record<string, unknown>,
   }));
 
+  // Invokes one tool and flattens the response to a single string
   async function callTool(name: string, args: Record<string, unknown>): Promise<string> {
     const result = await client.callTool({ name, arguments: args });
     const content = (result.content ?? []) as Array<{ type: string; text?: string }>;
